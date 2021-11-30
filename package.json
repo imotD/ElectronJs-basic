@@ -1,0 +1,25 @@
+{
+  "name": "shoppinglist",
+  "version": "1.0.0",
+  "description": "learn electrojs with traversy",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imotD/shoppinglist.git"
+  },
+  "keywords": [
+    "electrojs"
+  ],
+  "author": "imotD",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/imotD/shoppinglist/issues"
+  },
+  "homepage": "https://github.com/imotD/shoppinglist#readme",
+  "dependencies": {
+    "electron": "^16.0.2"
+  }
+}
