@@ -27,6 +27,21 @@ app.on("ready", function() {
 //* create menu template
 const mainMenuTemplate = [
   {
-    label: "File"
+    label: "File",
+    submenu: [
+      {
+        label: "Add Item"
+      },
+      {
+        label: "Clear Items"
+      },
+      {
+        label: "Quit",
+        accelerator: process.platform == "darwin" ? "Command+Q" : "Ctrl+Q",
+        click() {
+          app.quit();
+        }
+      }
+    ]
   }
 ];
