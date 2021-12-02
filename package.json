@@ -4,7 +4,8 @@
   "description": "learn electrojs with traversy",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "electron": "ELECTRON_DISABLE_SECURITY_WARNINGS=true electron ."
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,5 @@
     "url": "https://github.com/imotD/shoppinglist/issues"
   },
   "homepage": "https://github.com/imotD/shoppinglist#readme",
-  "dependencies": {
-    "electron": "^16.0.2"
-  }
+  "dependencies": {}
 }

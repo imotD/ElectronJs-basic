@@ -2,7 +2,7 @@ const electron = require("electron");
 const url = require("url");
 const path = require("path");
 
-const { app, BrowserWindow, Menu } = electron;
+const { app, BrowserWindow, Menu, ipcMain } = electron;
 
 let mainWindow;
 let addWindow;
@@ -34,7 +34,7 @@ app.on("ready", function() {
 function createAddWindow() {
   // create new window
   addWindow = new BrowserWindow({
-    width: 300,
+    width: 600,
     height: 200,
     title: "Add Shopping List Item"
   });
@@ -46,11 +46,18 @@ function createAddWindow() {
       slashes: true
     })
   );
-  // Garbage collection handle
+  // Handle garbage collection
   addWindow.on("close", function() {
     addWindow = null;
   });
 }
+
+//catch item:add
+ipcMain.on("item:add", function(e, item) {
+  console.log(item);
+  mainWindow.webContents.send("item:add", item);
+  addWindow.close();
+});
 
 // create menu template
 const mainMenuTemplate = [
