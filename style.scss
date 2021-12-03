@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(37, 79, 116);
+}
+
+.title-bar {
+  height: 50px;
+  width: 100%;
+  background-color: rgb(72, 125, 172);
+  -webkit-app-region: drag;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  .menu-section,
+  .document-name {
+    margin-right: 10px;
+  }
+}
