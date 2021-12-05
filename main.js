@@ -24,13 +24,39 @@ app.whenReady().then(() => {
   createWindow();
 });
 
+ipcMain.on("open-document-triggered", () => {
+  dialog
+    .showOpenDialog({
+      properties: ["openFile"],
+      filters: [
+        {
+          name: "text files",
+          extensions: ["txt"]
+        }
+      ]
+    })
+    .then(({ filePaths }) => {
+      const filePath = filePaths[0];
+
+      fs.readFile(filePath, "utf8", (error, content) => {
+        if (error) {
+          console.log("error");
+        } else {
+          mainWindow.webContents.send("document-opened", {
+            filePath,
+            content
+          });
+        }
+      });
+    });
+});
+
 ipcMain.on("create-document-triggered", () => {
   dialog
     .showSaveDialog(mainWindow, {
       filters: [{ name: "Text Files", extensions: [".txt"] }]
     })
     .then(({ filePath }) => {
-      console.log("file path", filePath);
       fs.writeFile(filePath, "", error => {
         if (error) {
           console.log("error");
