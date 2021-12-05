@@ -20,6 +20,7 @@ body {
 .title-bar {
   height: 50px;
   width: 100%;
+  color: white;
   background-color: #487dac;
   -webkit-app-region: drag;
   display: -webkit-box;
