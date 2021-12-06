@@ -5,6 +5,7 @@ const fs = require("fs");
 require("electron-reloader")(module);
 
 let mainWindow;
+let openedFilePath;
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
@@ -42,6 +43,7 @@ ipcMain.on("open-document-triggered", () => {
         if (error) {
           console.log("error");
         } else {
+          openedFilePath = filePath;
           mainWindow.webContents.send("document-opened", {
             filePath,
             content
@@ -61,8 +63,17 @@ ipcMain.on("create-document-triggered", () => {
         if (error) {
           console.log("error");
         } else {
+          openedFilePath = filePath;
           mainWindow.webContents.send("document-created", filePath);
         }
       });
     });
+});
+
+ipcMain.on("file-content-updated", (_, textareaContent) => {
+  fs.writeFile(openedFilePath, textareaContent, error => {
+    if (error) {
+      console.log(error);
+    }
+  });
 });
