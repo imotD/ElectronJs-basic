@@ -3,20 +3,19 @@
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant.sync="mini"
-      permanent=""
-      color="#2c3a47"
+      permanent
+      color="#2C3A47"
       dark
       app
     >
       <v-list-item class="px-2 pt-1">
         <v-list-item-avatar>
-          <img src="../src/assets/watch.png" alt="John" class="mx-auto" />
+          <v-img src="./assets/watch.png" alt="admin" class="mx-auto" />
         </v-list-item-avatar>
-        <v-list-item-title class="ml-4 text-capitalize">
-          WatchJaya Serang
-        </v-list-item-title>
+        <v-list-item-title class="ml-4 text-capitalize"
+          >MetroWatch</v-list-item-title
+        >
       </v-list-item>
-
       <v-list shaped class="clickable">
         <template v-for="item in items">
           <v-list-group
@@ -38,14 +37,13 @@
               v-for="(child, i) in item.children"
               :key="i"
               route
-              to="child.route"
+              :to="child.route"
               active-class="orange--text"
             >
               <v-list-item-action v-if="child.icon">
                 <v-icon>{{ child.icon }}</v-icon>
               </v-list-item-action>
-              <v-list-item-content
-                >= !mini
+              <v-list-item-content>
                 <v-list-item-title>
                   {{ child.text }}
                 </v-list-item-title>
@@ -72,13 +70,12 @@
         </template>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar app color="#2c3a47" dark>
-      <v-app-bar-nav-icon @click.stop="mini = !mini" class="clickable">
-      </v-app-bar-nav-icon>
+    <v-app-bar app color="#2C3A47" dark>
+      <v-app-bar-nav-icon @click.stop="mini = !mini" class="clickable" />
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
-        <span class="hidden-sm-and-down">AnicronApp</span>
+        <span class="hidden-sm-and-down">TommyJayaApp</span>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
+      <v-spacer />
       <v-btn icon v-on:click="logout" class="clickable">
         <v-icon>mdi-logout</v-icon>
       </v-btn>
@@ -107,28 +104,23 @@
 </template>
 
 <script>
+//import * as auth from '../services/auth_service'
 export default {
-  name: "App",
   props: {
     source: String
   },
-
   data: () => ({
     drawer: null,
     mini: false,
     fab: false,
     items: [
-      {
-        icon: "mdi-home",
-        text: "Dahsboard",
-        route: "/"
-      },
+      { icon: "mdi-home", text: "Dashboard", route: "/" },
       {
         icon: "mdi-chevron-up",
         "icon-alt": "mdi-chevron-down",
         "icon-ctr": "mdi-cart-arrow-right",
         text: "Orders",
-        mode: false,
+        model: false,
         children: [
           { icon: "style", text: "Type", route: "/Type" },
           { icon: "atm", text: "Mark", route: "/Mark" }
@@ -139,33 +131,22 @@ export default {
         "icon-alt": "mdi-chevron-down",
         "icon-ctr": "mdi-google-maps",
         text: "Tracking",
-        mode: false,
+        model: false,
         children: [
           { icon: "mdi-tooltip-account", text: "Locate", route: "/locate" },
           { icon: "mdi-printer", text: "Print", route: "/print" }
         ]
       },
-      {
-        icon: "mdi-finance",
-        text: "Revenue",
-        route: "/revenue"
-      },
-      {
-        icon: "mdi-chart-pie",
-        text: "Analytics",
-        route: "/chart"
-      },
-      {
-        icon: "mdi-magnify",
-        text: "Search",
-        route: "/recherches"
-      }
+      { icon: "mdi-finance", text: "Revenue", route: "/revenue" },
+      { icon: "mdi-chart-pie", text: "Analytics", route: "/chart" },
+      { icon: "mdi-magnify", text: "Search", route: "/recherches" }
     ]
   }),
+  computed: {},
   methods: {
     onScroll(e) {
       if (typeof window === "undefined") return;
-      const top = window.pageYoffet || e.target.scrollTop || 0;
+      const top = window.pageYOffset || e.target.scrollTop || 0;
       this.fab = top > 20;
     },
     toTop() {
@@ -175,19 +156,19 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .clickable {
   -webkit-app-region: no-drag;
 }
 ::-webkit-scrollbar {
-  /* width: 12px; */
+  width: 12px;
 }
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 </style>
