@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, dialog } = require("electron");
+const { app, BrowserWindow, ipcMain, dialog, Menu } = require("electron");
 const path = require("path");
 const fs = require("fs");
 
@@ -19,10 +19,84 @@ const createWindow = () => {
 
   mainWindow.webContents.openDevTools();
   mainWindow.loadFile("index.html");
+
+  const menuTemplate = [
+    {
+      label: "File",
+      submenu: [
+        {
+          label: "Add New File",
+          click: () => ipcMain.emit("open-document-triggered")
+        },
+        {
+          label: "Create New File",
+          click: () => ipcMain.emit("open-document-triggered")
+        },
+        { type: "separator" },
+        {
+          label: "Open Recent",
+          role: "recentdocuments",
+          submenu: [
+            {
+              label: "Clear Recent",
+              role: "clearrecentdocuments"
+            }
+          ]
+        },
+        {
+          role: "quit"
+        }
+      ]
+    },
+    {
+      label: "Edit",
+      submenu: [
+        { role: "undo" },
+        { role: "redo" },
+        { type: "separator" },
+        { role: "cut" },
+        { role: "copy" },
+        { role: "paste" },
+        { role: "pasteAndMatchStyle" },
+        { role: "delete" },
+        { role: "selectAll" },
+        { type: "separator" }
+      ]
+    }
+  ];
+
+  const menu = Menu.buildFromTemplate(menuTemplate);
+  Menu.setApplicationMenu(menu);
 };
 
 app.whenReady().then(() => {
   createWindow();
+});
+
+const handleError = () => {
+  new Notification({
+    title: "Error",
+    body: "Sorry , something went wrong :("
+  }).show();
+};
+
+const openFile = filePath => {
+  fs.readFile(filePath, "utf8", (error, content) => {
+    if (error) {
+      handleError();
+    } else {
+      app.addRecentDocument(filePath);
+      openedFilePath = filePath;
+      mainWindow.webContents.send("document-opened", {
+        filePath,
+        content
+      });
+    }
+  });
+};
+
+app.on("open-file", (_, filePath) => {
+  openFile(filePath);
 });
 
 ipcMain.on("open-document-triggered", () => {
@@ -38,18 +112,7 @@ ipcMain.on("open-document-triggered", () => {
     })
     .then(({ filePaths }) => {
       const filePath = filePaths[0];
-
-      fs.readFile(filePath, "utf8", (error, content) => {
-        if (error) {
-          console.log("error");
-        } else {
-          openedFilePath = filePath;
-          mainWindow.webContents.send("document-opened", {
-            filePath,
-            content
-          });
-        }
-      });
+      openFile(filePath);
     });
 });
 
@@ -61,8 +124,9 @@ ipcMain.on("create-document-triggered", () => {
     .then(({ filePath }) => {
       fs.writeFile(filePath, "", error => {
         if (error) {
-          console.log("error");
+          handleError();
         } else {
+          app.addRecentDocument(filePath);
           openedFilePath = filePath;
           mainWindow.webContents.send("document-created", filePath);
         }
@@ -73,7 +137,7 @@ ipcMain.on("create-document-triggered", () => {
 ipcMain.on("file-content-updated", (_, textareaContent) => {
   fs.writeFile(openedFilePath, textareaContent, error => {
     if (error) {
-      console.log(error);
+      handleError();
     }
   });
 });
