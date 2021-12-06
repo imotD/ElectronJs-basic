@@ -58,3 +58,5 @@ spec/fixtures/logo.png
 
 *.scss
 *.map
+#Electron-builder output
+/dist_electron
