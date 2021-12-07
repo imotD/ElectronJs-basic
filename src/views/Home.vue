@@ -1,15 +1,20 @@
 <template>
-  <hello-world />
+  <div>
+    <navbar />
+    <hello-world />
+  </div>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
+import HelloWorld from "../components/HelloWorld";
+import Navbar from "../components/TheNavbar.vue";
 
-  export default {
-    name: 'Home',
+export default {
+  name: "Home",
 
-    components: {
-      HelloWorld,
-    },
+  components: {
+    HelloWorld,
+    Navbar
   }
+};
 </script>
