@@ -1,16 +1,16 @@
 <template>
   <div>
-    <hello-world />
+    <Products />
   </div>
 </template>
 
 <script>
-import HelloWorld from "../components/HelloWorld";
+import Products from "../components/Products";
 
 export default {
   name: "Home",
   components: {
-    HelloWorld
+    Products
   },
   data() {
     return {};

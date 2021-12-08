@@ -5,102 +5,93 @@
       "image": "http://dummyimage.com/147x100.png/ff4444/ffffff",
       "title": "Calcium Gluconate",
       "pricing": "$9.69",
-      "description": "Thoracic aortic aneurysm, without rupture"
+      "description": "Thoracic aortic aneurysm, without rupture",
+      "isReady": false
     },
     {
       "id": 2,
       "image": "http://dummyimage.com/220x100.png/dddddd/000000",
       "title": "Sprayology Rejuvenation Plus",
       "pricing": "$8.39",
-      "description": "Toxic effect of carbon disulfide, accidental, sequela"
+      "description": "Toxic effect of carbon disulfide, accidental, sequela",
+      "isReady": false
     },
     {
       "id": 3,
       "image": "http://dummyimage.com/180x100.png/ff4444/ffffff",
       "title": "Ulta Red Raspberry Anti-Bacterial Deep Cleansing",
       "pricing": "$3.93",
-      "description": "Unsp inj intrinsic musc/fasc/tend l thm at wrs/hnd lv, init"
+      "description": "Unsp inj intrinsic musc/fasc/tend l thm at wrs/hnd lv, init",
+      "isReady": false
     },
     {
       "id": 4,
       "image": "http://dummyimage.com/111x100.png/ff4444/ffffff",
       "title": "Ibutab",
       "pricing": "$9.11",
-      "description": "Inj flexor musc/fasc/tend left little finger at wrs/hnd lv"
+      "description": "Inj flexor musc/fasc/tend left little finger at wrs/hnd lv",
+      "isReady": false
     },
     {
       "id": 5,
       "image": "http://dummyimage.com/155x100.png/5fa2dd/ffffff",
       "title": "Crest",
       "pricing": "$7.86",
-      "description": "Puncture wound w/o foreign body of right wrist, init encntr"
+      "description": "Puncture wound w/o foreign body of right wrist, init encntr",
+      "isReady": false
     },
     {
       "id": 6,
       "image": "http://dummyimage.com/169x100.png/5fa2dd/ffffff",
       "title": "ELYMUS REPENS POLLEN",
       "pricing": "$2.45",
-      "description": "Oth fx shaft of unsp ulna, 7thN"
+      "description": "Oth fx shaft of unsp ulna, 7thN",
+      "isReady": false
     },
     {
       "id": 7,
       "image": "http://dummyimage.com/161x100.png/ff4444/ffffff",
       "title": "Fluconazole",
       "pricing": "$0.08",
-      "description": "Fracture of unspecified part of scapula"
+      "description": "Fracture of unspecified part of scapula",
+      "isReady": false
     },
     {
       "id": 8,
       "image": "http://dummyimage.com/161x100.png/ff4444/ffffff",
       "title": "Ibuprofen",
       "pricing": "$3.84",
-      "description": "Corrosion of third degree of ankle and foot"
+      "description": "Corrosion of third degree of ankle and foot",
+      "isReady": false
     },
     {
       "id": 9,
       "image": "http://dummyimage.com/208x100.png/dddddd/000000",
       "title": "LBEL EFFET PARFAIT MINERAL NATURAL SKIN EFFECT MOUSSE FOUNDATION SPF 16",
       "pricing": "$1.47",
-      "description": "Oth fx first MC bone, left hand, subs for fx w nonunion"
+      "description": "Oth fx first MC bone, left hand, subs for fx w nonunion",
+      "isReady": false
     },
     {
       "id": 10,
       "image": "http://dummyimage.com/245x100.png/dddddd/000000",
       "title": "Leucovorin",
       "pricing": "$7.76",
-      "description": "Partial traum amp of r hip and thigh, level unsp, sequela"
+      "description": "Partial traum amp of r hip and thigh, level unsp, sequela",
+      "isReady": false
     }
   ],
   "cart": [
-    {
-      "data": {
-        "id": 3,
-        "image": "http://dummyimage.com/180x100.png/ff4444/ffffff",
-        "title": "Ulta Red Raspberry Anti-Bacterial Deep Cleansing",
-        "pricing": "$3.93",
-        "description": "Unsp inj intrinsic musc/fasc/tend l thm at wrs/hnd lv, init"
-      },
-      "id": 1
-    },
-    {
-      "data": {
-        "id": 2,
-        "image": "http://dummyimage.com/220x100.png/dddddd/000000",
-        "title": "Sprayology Rejuvenation Plus",
-        "pricing": "$8.39",
-        "description": "Toxic effect of carbon disulfide, accidental, sequela"
-      },
-      "id": 2
-    },
     {
       "data": {
         "id": 5,
         "image": "http://dummyimage.com/155x100.png/5fa2dd/ffffff",
         "title": "Crest",
         "pricing": "$7.86",
-        "description": "Puncture wound w/o foreign body of right wrist, init encntr"
+        "description": "Puncture wound w/o foreign body of right wrist, init encntr",
+        "isReady": false
       },
-      "id": 3
+      "id": 1
     }
   ],
   "order": []
