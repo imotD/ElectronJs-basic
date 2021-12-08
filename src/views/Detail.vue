@@ -15,9 +15,18 @@
       <v-row>
         <v-col cols="12" md="6">
           <v-img
-            max-height="300"            
+            max-height="300"
             lazy-src="https://picsum.photos/id/11/10/12"
             :src="data.image"
+            aspect-ratio="1"
+          >
+            <template v-slot:placeholder>
+              <v-row class="fill-height ma-0" align="center" justify="center">
+                <v-progress-circular
+                  indeterminate
+                  color="grey lighten-5"
+                ></v-progress-circular>
+              </v-row> </template
           ></v-img>
         </v-col>
         <v-col cols="12" md="6">
