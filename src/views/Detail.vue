@@ -15,19 +15,18 @@
       <v-row>
         <v-col cols="12" md="6">
           <v-img
+            max-height="300"            
             lazy-src="https://picsum.photos/id/11/10/12"
-            src="https://picsum.photos/id/11/500/300"
+            :src="data.image"
           ></v-img>
         </v-col>
         <v-col cols="12" md="6">
-          <h1>Judul Barang</h1>
-          <p>Rp 3000</p>
+          <h1>{{ data.title }}</h1>
+          <p class="title">{{ data.pricing }}</p>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi est et
-            cumque natus veniam nam, dolor, deserunt deleniti veritatis,
-            voluptate sint ad. Maxime ut tenetur ad mollitia enim nobis quam.
+            {{ data.description }}
           </p>
-          <v-btn color="success">Buy</v-btn>
+          <v-btn color="primary">Buy</v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -52,8 +51,17 @@ export default {
         text: "Details",
         disabled: true
       }
-    ]
-  })
+    ],
+    data: ""
+  }),
+  created() {
+    this.$axios
+      .get(`http://localhost:3000/products?id=${this.$route.params.id}`)
+      .then((response) => (this.data = response.data[0]))
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 };
 </script>
 
