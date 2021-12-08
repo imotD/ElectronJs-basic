@@ -35,11 +35,11 @@
           <p>
             {{ data.description }}
           </p>
-          <v-btn color="primary">Buy</v-btn>
+          <v-btn @click="addToCart(data)" color="primary">Buy</v-btn>
         </v-col>
       </v-row>
     </v-container>
-    <ButtonCart />
+    <ButtonCart :items="badgeNumber" />
   </div>
 </template>
 
@@ -50,6 +50,7 @@ export default {
     ButtonCart
   },
   data: () => ({
+    badgeNumber: [],
     items: [
       {
         text: "Dashboard",
@@ -70,6 +71,34 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
+
+    this.$axios
+      .get("http://localhost:3000/cart")
+      .then((response) => (this.badgeNumber = response.data.length))
+      .catch(function (error) {
+        console.log(error);
+      });
+  },
+
+  methods: {
+    addToCart(data) {
+      console.log(data);
+      this.$axios
+        .post("http://localhost:3000/cart", {
+          data
+        })
+        .then(() => {
+          this.$axios
+            .get("http://localhost:3000/cart")
+            .then((response) => (this.badgeNumber = response.data.length))
+            .catch(function (error) {
+              console.log(error);
+            });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   }
 };
 </script>

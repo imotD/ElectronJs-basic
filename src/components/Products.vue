@@ -57,7 +57,7 @@
         ></v-pagination>
       </v-col>
     </v-row> -->
-    <ButtonCart />
+    <ButtonCart :items="badgeNumber" />
   </v-container>
 </template>
 
@@ -80,6 +80,7 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
+      
     this.$axios
       .get("http://localhost:3000/products")
       .then((response) => (this.data = response.data))
@@ -88,19 +89,7 @@ export default {
       });
   },
   mounted() {},
-  methods: {
-    addCard(data) {
-      console.log(data);
-      // this.$axios
-      //   .post("http://localhost:3000/cart", {
-      //     data
-      //   })
-      //   .then((response) => console.log(response))
-      //   .catch(function (error) {
-      //     console.log(error);
-      //   });
-    }
-  }
+  methods: {}
 };
 </script>
 
