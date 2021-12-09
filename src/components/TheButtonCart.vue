@@ -16,7 +16,7 @@
           <v-icon>mdi-cart</v-icon>
         </v-badge>
       </v-btn>
-      <v-btn v-else to="/order" color="green" dark fixed bottom right fab large>
+      <v-btn v-else to="/cart" color="green" dark fixed bottom right fab large>
         <v-icon>mdi-cart</v-icon>
       </v-btn>
     </v-fab-transition>
