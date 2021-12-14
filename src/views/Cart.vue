@@ -37,7 +37,13 @@
                   <td>$ {{ item.data.pricing }}</td>
                   <td>$ {{ item.data.pricing * item.data.qty }}</td>
                   <td width="50">
-                    <v-btn icon x-small fab color="error">
+                    <v-btn
+                      icon
+                      x-small
+                      fab
+                      color="error"
+                      @click="deleteItem(item.id)"
+                    >
                       <v-icon> mdi-delete </v-icon>
                     </v-btn>
                   </td>
@@ -88,7 +94,25 @@ export default {
     }
   },
 
-  methods: {}
+  methods: {
+    deleteItem(id) {
+      this.$axios
+        .delete("http://localhost:3000/cart/" + id)
+        .then(() => {
+          this.$axios
+            .get("http://localhost:3000/cart")
+            .then((response) => {
+              this.products = response.data;
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  }
 };
 </script>
 

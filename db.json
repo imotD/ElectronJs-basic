@@ -94,18 +94,6 @@
   "cart": [
     {
       "data": {
-        "id": 2,
-        "image": "http://dummyimage.com/220x100.png/dddddd/000000",
-        "title": "Sprayology Rejuvenation Plus",
-        "pricing": 10,
-        "description": "Toxic effect of carbon disulfide, accidental, sequela",
-        "isReady": false,
-        "qty": 1
-      },
-      "id": 1
-    },
-    {
-      "data": {
         "id": 1,
         "image": "http://dummyimage.com/147x100.png/ff4444/ffffff",
         "title": "Calcium Gluconate",
@@ -118,18 +106,6 @@
     },
     {
       "data": {
-        "id": 6,
-        "image": "http://dummyimage.com/169x100.png/5fa2dd/ffffff",
-        "title": "ELYMUS REPENS POLLEN",
-        "pricing": 10,
-        "description": "Oth fx shaft of unsp ulna, 7thN",
-        "isReady": false,
-        "qty": 1
-      },
-      "id": 3
-    },
-    {
-      "data": {
         "id": 4,
         "image": "http://dummyimage.com/111x100.png/ff4444/ffffff",
         "title": "Ibutab",
@@ -139,30 +115,6 @@
         "qty": 1
       },
       "id": 4
-    },
-    {
-      "data": {
-        "id": 9,
-        "image": "http://dummyimage.com/208x100.png/dddddd/000000",
-        "title": "LBEL EFFET PARFAIT MINERAL NATURAL SKIN EFFECT MOUSSE FOUNDATION SPF 16",
-        "pricing": 10,
-        "description": "Oth fx first MC bone, left hand, subs for fx w nonunion",
-        "isReady": false,
-        "qty": 1
-      },
-      "id": 5
-    },
-    {
-      "data": {
-        "id": 10,
-        "image": "http://dummyimage.com/245x100.png/dddddd/000000",
-        "title": "Leucovorin",
-        "pricing": 10,
-        "description": "Partial traum amp of r hip and thigh, level unsp, sequela",
-        "isReady": false,
-        "qty": 2
-      },
-      "id": 6
     }
   ],
   "order": []
