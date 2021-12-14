@@ -3,7 +3,7 @@
     <v-fab-transition>
       <v-btn
         v-if="items"
-        to="/order"
+        to="/cart"
         color="green"
         dark
         fixed
