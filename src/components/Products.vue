@@ -1,5 +1,16 @@
 <template>
   <v-container>
+    <v-row>
+      <v-col cols="12">
+        <v-breadcrumbs :items="items">
+          <template v-slot:item="{ item }">
+            <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+              {{ item.text.toUpperCase() }}
+            </v-breadcrumbs-item>
+          </template>
+        </v-breadcrumbs>
+      </v-col>
+    </v-row>
     <v-row class="py-10">
       <v-col cols="12" sm="4" v-for="(img, i) in data" :key="i.id">
         <v-hover v-slot="{ hover }">
@@ -64,13 +75,20 @@
 <script>
 import ButtonCart from "@/components/TheButtonCart.vue";
 export default {
-  name: "HelloWorld",
+  name: "Products",
   components: {
     ButtonCart
   },
   data: () => ({
     data: "",
     badgeNumber: "",
+    items: [
+      {
+        text: "Dashboard",
+        disabled: false,
+        href: "/"
+      }
+    ],
     page: 1
   }),
   created() {
@@ -80,7 +98,7 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
-      
+
     this.$axios
       .get("http://localhost:3000/products")
       .then((response) => (this.data = response.data))

@@ -8,6 +8,17 @@
       </v-row>
       <v-row>
         <v-col cols="12">
+          <v-breadcrumbs :items="items">
+            <template v-slot:item="{ item }">
+              <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+                {{ item.text.toUpperCase() }}
+              </v-breadcrumbs-item>
+            </template>
+          </v-breadcrumbs>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12">
           <v-simple-table>
             <template v-slot:default>
               <thead>
@@ -71,8 +82,20 @@
 
 <script>
 export default {
+  name: "Cart",
   data: () => ({
-    products: ""
+    products: "",
+    items: [
+      {
+        text: "Dashboard",
+        disabled: false,
+        href: "/"
+      },
+      {
+        text: "Cart",
+        disabled: true
+      }
+    ]
   }),
 
   created() {
