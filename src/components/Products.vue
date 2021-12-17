@@ -86,7 +86,7 @@ export default {
       {
         text: "Dashboard",
         disabled: false,
-        href: "/"
+        href: "/dashboard"
       }
     ],
     page: 1

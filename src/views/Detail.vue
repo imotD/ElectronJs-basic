@@ -55,7 +55,7 @@ export default {
       {
         text: "Dashboard",
         disabled: false,
-        href: "/"
+        href: "/dashboard"
       },
       {
         text: "Details",

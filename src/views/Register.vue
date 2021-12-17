@@ -5,12 +5,12 @@
         <v-card class="mx-auto my-12 pa-10" max-width="374">
           <v-card-title class="mx-auto">Register</v-card-title>
 
-          <v-form>
-            <v-text-field
+          <v-form @submit.prevent="handleSubmit">
+            <!-- <v-text-field
               v-model="first_name"
               label="First Name"
             ></v-text-field>
-            <v-text-field v-model="last_name" label="Last Name"></v-text-field>
+            <v-text-field v-model="last_name" label="Last Name"></v-text-field> -->
 
             <v-text-field v-model="email" label="E-mail"></v-text-field>
 
@@ -20,15 +20,13 @@
               label="Password"
             ></v-text-field>
 
-            <v-text-field
+            <!-- <v-text-field
               type="password"
               v-model="password_confirm"
               label="Confirm Password"
-            ></v-text-field>
+            ></v-text-field> -->
 
-            <v-btn @click="handleSubmit()" color="success" class="mr-4">
-              Submit
-            </v-btn>
+            <v-btn type="submit" color="success" class="mr-4"> Submit </v-btn>
           </v-form>
         </v-card>
       </v-row>
@@ -37,6 +35,8 @@
 </template>
 
 <script>
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
 export default {
   name: "Register",
   data() {
@@ -45,25 +45,26 @@ export default {
       last_name: "",
       email: "",
       password: "",
-      password_confirm: ""
+      password_confirm: "",
+      error: ""
     };
   },
   methods: {
-    async handleSubmit() {
-      await this.$axios
-        .post("http://localhost:3000/register", {
-          first_name: this.first_name,
-          last_name: this.last_name,
-          email: this.email,
-          password: this.password,
-          password_confirm: this.password_confirm
-        })
-        .then(() => {
-          console.log("Terkirim");
+    handleSubmit() {
+      const auth = getAuth();
+      createUserWithEmailAndPassword(auth, this.email, this.password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
           this.$route.push("/login");
         })
-        .catch(function (error) {
-          console.log(error);
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+
+          alert(errorCode);
+          console.log(errorMessage);
         });
     }
   }

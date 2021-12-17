@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+// import firebase from "firebase/app";
 
 Vue.use(VueRouter);
 
@@ -11,12 +12,25 @@ const routes = [
     component: Home
   },
   {
+    path: "/dashboard/",
+    name: "Dashboard",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    meta: {
+      authRequired: true
+    },
+    component: () =>
+      import(/* webpackChunkName: "Dashboard" */ "../views/Dashboard.vue")
+  },
+  {
     path: "/login/",
     name: "Login",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "Login" */ "../views/Login.vue")
+    component: () =>
+      import(/* webpackChunkName: "Login" */ "../views/Login.vue")
   },
   {
     path: "/register/",
@@ -24,11 +38,15 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "Register" */ "../views/Register.vue")
+    component: () =>
+      import(/* webpackChunkName: "Register" */ "../views/Register.vue")
   },
   {
     path: "/product/:id",
     name: "Detail",
+    meta: {
+      authRequired: true
+    },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -38,12 +56,30 @@ const routes = [
   {
     path: "/cart/",
     name: "Cart",
+    meta: {
+      authRequired: true
+    },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "Cart" */ "../views/Cart.vue")
   }
 ];
+
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some(record => record.meta.authRequired)) {
+//     if (firebase.auth().currentUser) {
+//       next();
+//     } else {
+//       alert("You must be logged in to see this page");
+//       next({
+//         path: "/"
+//       });
+//     }
+//   } else {
+//     next();
+//   }
+// });
 
 const router = new VueRouter({
   mode: "history",
