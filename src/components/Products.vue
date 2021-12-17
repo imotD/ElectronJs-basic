@@ -1,6 +1,17 @@
 <template>
   <v-container>
     <v-row>
+      <v-toolbar dark prominent>
+        <v-toolbar-title>{{ name }}</v-toolbar-title>
+
+        <v-spacer></v-spacer>
+
+        <v-btn icon @click="logout()">
+          <v-icon>mdi-export</v-icon>
+        </v-btn>
+      </v-toolbar>
+    </v-row>
+    <v-row>
       <v-col cols="12">
         <v-breadcrumbs :items="items">
           <template v-slot:item="{ item }">
@@ -11,7 +22,7 @@
         </v-breadcrumbs>
       </v-col>
     </v-row>
-    <v-row class="py-10">
+    <v-row class="pb-10">
       <v-col cols="12" sm="4" v-for="(img, i) in data" :key="i.id">
         <v-hover v-slot="{ hover }">
           <v-card :elevation="hover ? 16 : 2">
@@ -73,6 +84,7 @@
 </template>
 
 <script>
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import ButtonCart from "@/components/TheButtonCart.vue";
 export default {
   name: "Products",
@@ -80,6 +92,7 @@ export default {
     ButtonCart
   },
   data: () => ({
+    name: "",
     data: "",
     badgeNumber: "",
     items: [
@@ -105,9 +118,22 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
+
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // const uid = user.uid;
+        console.log(user);
+        this.name = user.email;
+      } else {
+        console.log("user signout");
+      }
+    });
   },
   mounted() {},
-  methods: {}
+  methods: {
+    logout() {}
+  }
 };
 </script>
 

@@ -43,7 +43,7 @@ export default {
         .then((userCredential) => {
           const user = userCredential.user;
           console.log(user);
-          this.$route.push("/dashboard");
+          this.$router.push("/dashboard");
         })
         .catch((error) => {
           alert(error);
