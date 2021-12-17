@@ -18,7 +18,10 @@
           </v-card-actions>
           <v-card-text>
             Need an Account ? <router-link to="/register">Sign Up</router-link>
+            <br />
+            <router-link to="/recovery">Forgot Password?</router-link>
           </v-card-text>
+          <v-card-text> </v-card-text>
         </v-card>
       </v-row>
     </v-container>
