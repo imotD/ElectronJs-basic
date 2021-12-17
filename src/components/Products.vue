@@ -1,17 +1,6 @@
 <template>
   <v-container>
     <v-row>
-      <v-toolbar dark prominent>
-        <v-toolbar-title>{{ name }}</v-toolbar-title>
-
-        <v-spacer></v-spacer>
-
-        <v-btn icon @click="logout()">
-          <v-icon>mdi-export</v-icon>
-        </v-btn>
-      </v-toolbar>
-    </v-row>
-    <v-row>
       <v-col cols="12">
         <v-breadcrumbs :items="items">
           <template v-slot:item="{ item }">
@@ -84,7 +73,6 @@
 </template>
 
 <script>
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import ButtonCart from "@/components/TheButtonCart.vue";
 export default {
   name: "Products",
@@ -118,17 +106,6 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
-
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // const uid = user.uid;
-        console.log(user);
-        this.name = user.email;
-      } else {
-        console.log("user signout");
-      }
-    });
   },
   mounted() {},
   methods: {

@@ -57,7 +57,7 @@ export default {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-          this.$route.push("/login");
+          this.$router.push("/login");
         })
         .catch((error) => {
           const errorCode = error.code;
