@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
 export default {
   name: "Navbar",
@@ -31,11 +31,11 @@ export default {
 
   created() {
     const auth = getAuth();
-    const user = auth.currentUser;
-    if (user !== null) {
-      const email = user.email;
-      this.name = email;
-    }
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.name = user.email;
+      }
+    });
   },
   methods: {
     logout() {

@@ -11,7 +11,7 @@
         </v-breadcrumbs>
       </v-col>
     </v-row>
-    <v-row class="pb-10">
+    <v-row v-if="data" class="pb-10">
       <v-col cols="12" sm="4" v-for="(img, i) in data" :key="i.id">
         <v-hover v-slot="{ hover }">
           <v-card :elevation="hover ? 16 : 2">
@@ -57,6 +57,13 @@
         </v-hover>
       </v-col>
     </v-row>
+    <v-row v-else class="mx-auto">
+      <v-col>
+        <v-alert type="warning">
+          Server lokal Json Placeholder Belum diaktifkan
+        </v-alert>
+      </v-col>
+    </v-row>
     <!-- <v-row>
       <v-col cols="12">
         <v-pagination
@@ -68,7 +75,7 @@
         ></v-pagination>
       </v-col>
     </v-row> -->
-    <ButtonCart :items="badgeNumber" />
+    <ButtonCart v-if="badgeNumber" :items="badgeNumber" />
   </v-container>
 </template>
 
