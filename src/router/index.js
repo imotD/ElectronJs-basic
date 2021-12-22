@@ -24,6 +24,18 @@ const routes = [
       import(/* webpackChunkName: "Dashboard" */ "../views/Dashboard.vue")
   },
   {
+    path: "/dashboard/contact",
+    name: "Contact",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    meta: {
+      authRequired: true
+    },
+    component: () =>
+      import(/* webpackChunkName: "Contact" */ "../views/Contact.vue")
+  },
+  {
     path: "/recovery/",
     name: "Recovery",
     // route level code-splitting

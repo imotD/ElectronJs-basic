@@ -94,18 +94,6 @@
   "cart": [
     {
       "data": {
-        "id": 6,
-        "image": "http://dummyimage.com/169x100.png/5fa2dd/ffffff",
-        "title": "ELYMUS REPENS POLLEN",
-        "pricing": 10,
-        "description": "Oth fx shaft of unsp ulna, 7thN",
-        "isReady": false,
-        "qty": 1
-      },
-      "id": 1
-    },
-    {
-      "data": {
         "id": 7,
         "image": "http://dummyimage.com/161x100.png/ff4444/ffffff",
         "title": "Fluconazole",
