@@ -1,0 +1,28 @@
+{
+  "name": "electronjs-basic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imotD/shoppinglist.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imotD/shoppinglist/issues"
+  },
+  "homepage": "https://github.com/imotD/shoppinglist#readme",
+  "devDependencies": {
+    "electron": "^16.0.5"
+  },
+  "dependencies": {
+    "bower": "^1.8.13",
+    "jquery": "^3.6.0"
+  }
+}
