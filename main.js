@@ -7,13 +7,16 @@ const {
   Menu,
   shell,
   ipcMain,
-  remote
+  remote,
+  ipcRenderer
 } = require("electron");
 const path = require("path");
 
+let mainWindow;
+
 const createWindow = () => {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
 
@@ -77,7 +80,7 @@ ipcMain.on("main:notifyBtn", () => {
     }
   });
 
-  // win.webContents.openDevTools();
+  win.webContents.openDevTools();
 
   win.on("close", function() {
     win = null;
@@ -87,6 +90,13 @@ ipcMain.on("main:notifyBtn", () => {
 });
 
 ipcMain.on("add:closeBtn", () => {
+  var window = BrowserWindow.getFocusedWindow();
+  window.close();
+});
+
+ipcMain.on("update-notify-value", (event, arg) => {
+  mainWindow.webContents.send("targetPriceVal", arg);
+
   var window = BrowserWindow.getFocusedWindow();
   window.close();
 });

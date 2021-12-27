@@ -1,4 +1,4 @@
-const { ipcRenderer } = require("electron");
+const { ipcRenderer, ipcMain } = require("electron");
 const axios = require("axios");
 
 const notifyBtn = document.getElementById("notifyBtn");
@@ -22,4 +22,10 @@ setInterval(getBTC, 30000);
 
 notifyBtn.addEventListener("click", e => {
   ipcRenderer.send("main:notifyBtn");
+});
+
+ipcRenderer.on("targetPriceVal", (event, arg) => {
+  (targetPriceVal = Number(
+    arg
+  )), (targetPrice.innerHTML = `$${targetPriceVal.toLocaleString("en")}`);
 });
