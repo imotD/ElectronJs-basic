@@ -1,7 +1,14 @@
 // main.js
 
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, Menu, shell, ipcMain } = require("electron");
+const {
+  app,
+  BrowserWindow,
+  Menu,
+  shell,
+  ipcMain,
+  remote
+} = require("electron");
 const path = require("path");
 
 const createWindow = () => {
@@ -12,8 +19,7 @@ const createWindow = () => {
 
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false,
-      enableRemoteModule: true
+      contextIsolation: false
       // preload: path.join(__dirname, "./src/index.html")
     }
   });
@@ -58,23 +64,31 @@ app.whenReady().then(() => {
   });
 });
 
-ipcMain.on("main:notifyBtn", (event, text) => {
+ipcMain.on("main:notifyBtn", () => {
   const modalPath = path.join("file://", __dirname, "./src/add.html");
   let win = new BrowserWindow({
     width: 400,
     height: 200,
-    frame: false
-    // webPreferences: {
-    //   nodeIntegration: true,
-    //   enableRemoteModule: true
-    // }
+    alwaysOnTop: true,
+    // frame: false
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false
+    }
   });
+
+  win.webContents.openDevTools();
 
   win.on("close", function() {
     win = null;
   });
   win.loadURL(modalPath);
   win.show();
+});
+
+ipcMain.on("add:closeBtn", () => {
+  var window = BrowserWindow.getFocusedWindow();
+  window.close();
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
