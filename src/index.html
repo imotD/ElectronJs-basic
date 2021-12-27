@@ -2,34 +2,32 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <meta
-      http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../assets/css/main.css" />
+    <!-- <link rel="stylesheet" href="../assets/css/photon.css" /> -->
     <title>Hi Electron</title>
   </head>
   <body>
-    <div class="row">
-      <div id="price-container">
-        <p class="subtext">Current BTC USD</p>
-        <h1 id="price">Loading..</h1>
-      </div>
-      <div id="goal-container">
-        <p>
-          <img src="../assets/images/up.svg" alt="image" />
-          <span id="targetPrice"> Choose a Target Price </span>
-        </p>
-      </div>
-      <div id="right-container">
-        <button id="notifyBtn">Notif me when..</button>
+    <!-- Wrap your entire app inside .window -->
+    <div class="window">
+      <div class="row">
+        <div id="price-container">
+          <p class="subtext">Current BTC USD</p>
+          <h1 id="price">Loading..</h1>
+        </div>
+        <div id="goal-container">
+          <p>
+            <img src="../assets/images/up.svg" alt="image" />
+            <span id="targetPrice"> Choose a Target Price </span>
+          </p>
+        </div>
+        <div id="right-container">
+          <button id="notifyBtn">Notif me when..</button>
+        </div>
       </div>
     </div>
+
     <script src="index.js"></script>
   </body>
 </html>

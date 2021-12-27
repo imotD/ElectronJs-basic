@@ -1,7 +1,7 @@
 // main.js
 
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, Menu, shell } = require("electron");
+const { app, BrowserWindow, Menu, shell, ipcMain } = require("electron");
 const path = require("path");
 
 const createWindow = () => {
@@ -9,8 +9,12 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+
     webPreferences: {
-      preload: path.join(__dirname, "preload.js")
+      nodeIntegration: true,
+      contextIsolation: false,
+      enableRemoteModule: true
+      // preload: path.join(__dirname, "./src/index.html")
     }
   });
 
@@ -18,7 +22,7 @@ const createWindow = () => {
   mainWindow.loadFile("./src/index.html");
 
   // Open the DevTools.
-  //   mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools();
 
   let menu = Menu.buildFromTemplate([
     {
@@ -32,6 +36,7 @@ const createWindow = () => {
           }
         },
         { type: "separator" },
+        { role: "reload" },
         { role: "quit" }
       ]
     },
@@ -51,6 +56,25 @@ app.whenReady().then(() => {
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
+});
+
+ipcMain.on("main:notifyBtn", (event, text) => {
+  const modalPath = path.join("file://", __dirname, "./src/add.html");
+  let win = new BrowserWindow({
+    width: 400,
+    height: 200,
+    frame: false
+    // webPreferences: {
+    //   nodeIntegration: true,
+    //   enableRemoteModule: true
+    // }
+  });
+
+  win.on("close", function() {
+    win = null;
+  });
+  win.loadURL(modalPath);
+  win.show();
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
