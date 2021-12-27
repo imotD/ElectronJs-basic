@@ -8,7 +8,8 @@ const {
   shell,
   ipcMain,
   remote,
-  ipcRenderer
+  ipcRenderer,
+  Notification
 } = require("electron");
 const path = require("path");
 
@@ -80,7 +81,7 @@ ipcMain.on("main:notifyBtn", () => {
     }
   });
 
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
 
   win.on("close", function() {
     win = null;
@@ -93,6 +94,18 @@ ipcMain.on("add:closeBtn", () => {
   var window = BrowserWindow.getFocusedWindow();
   window.close();
 });
+
+// ipcMain.on("notifUpdate", () => {
+//   const notification = {
+//     title: "BTC Alert",
+//     body: "BTC just beat your target price!"
+//   };
+
+//   new Notification({
+//     title: notification.title,
+//     body: notification.body
+//   }).show();
+// });
 
 ipcMain.on("update-notify-value", (event, arg) => {
   mainWindow.webContents.send("targetPriceVal", arg);

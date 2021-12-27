@@ -1,9 +1,15 @@
-const { ipcRenderer, ipcMain } = require("electron");
+const { ipcRenderer, Notification } = require("electron");
 const axios = require("axios");
 
 const notifyBtn = document.getElementById("notifyBtn");
 let price = document.querySelector("h1");
 let targetPrice = document.getElementById("targetPrice");
+let targetPriceVal;
+
+const notification = {
+  title: "BTC Alert",
+  body: "BTC just beat your target price!"
+};
 
 function getBTC() {
   axios
@@ -13,12 +19,18 @@ function getBTC() {
     .then(res => {
       const cryptos = res.data.BTC.USD;
       price.innerHTML = `$${cryptos.toLocaleString("en")}`;
+      if (targetPrice.innerHTML != "" && targetPriceVal < cryptos) {
+        new Notification({
+          title: notification.title,
+          body: notification.body
+        }).show();
+      }
     })
     .catch(e => console.log(e));
 }
 
 getBTC();
-setInterval(getBTC, 30000);
+setInterval(getBTC, 10000);
 
 notifyBtn.addEventListener("click", e => {
   ipcRenderer.send("main:notifyBtn");
