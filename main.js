@@ -77,7 +77,7 @@ ipcMain.on("main:notifyBtn", () => {
     }
   });
 
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
 
   win.on("close", function() {
     win = null;

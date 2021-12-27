@@ -18,5 +18,8 @@
   "homepage": "https://github.com/imotD/shoppinglist#readme",
   "devDependencies": {
     "electron": "16.0.5"
+  },
+  "dependencies": {
+    "axios": "^0.24.0"
   }
 }
